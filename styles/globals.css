@@ -1,0 +1,48 @@
+/* if vs code shows warning , go to setting -> CSS> Lint:Unknown At Rules -> select ignore */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* Custom tailwind class */
+@layer components {
+  .link {
+    @apply cursor-pointer  hover:text-blue-light active:text-blue-light;
+  }
+  .button {
+    @apply cursor-pointer rounded text-center p-2 text-sm   text-white  bg-gradient-to-b from-blue-light to-blue-dark border border-blue-light  focus:outline-none focus:ring-2 focus:ring-blue-dark active:from-blue-dark;
+  }
+  .button-green {
+    @apply cursor-pointer rounded text-center p-2 text-sm  text-white  bg-gradient-to-b from-green-500 to-green-800 border-green-500  focus:outline-none focus:ring-2 focus:ring-green-500 active:from-green-800;
+  }
+  .button-red {
+    @apply cursor-pointer rounded text-center p-2 text-sm  text-white  bg-gradient-to-b from-red-500 to-red-800 border-red-500  focus:outline-none focus:ring-2 focus:ring-red-500 active:from-red-800;
+  }
+  .dropDownOption {
+    @apply w-full cursor-pointer hover:bg-gray-100 py-2 px-3;
+  }
+  .dashboard-link {
+    @apply link rounded border px-4 py-1 hover:bg-blue-light hover:text-white transition-all duration-200 text-sm;
+  }
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  font-family: "Poppins", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #1f2937;
+  scroll-behavior: smooth;
+}
+
+.heightFix,
+.heightFixAdmin {
+  min-height: calc(100vh - 150px);
+  height: 100%;
+}
