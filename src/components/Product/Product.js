@@ -7,7 +7,7 @@ import Link from "next/link";
 import { ShoppingCartIcon } from "@heroicons/react/solid";
 import { addToCart } from "src/features/cart/cartSlice";
 
-function Product({ _id, title, price, description, category, image }) {
+function Product({ _id, title, price, description, category, image}) {
   const dispatch = useDispatch();
   const router = useRouter();
   const addItemToCart = () => {
@@ -25,6 +25,7 @@ function Product({ _id, title, price, description, category, image }) {
       })
     );
   };
+  console.log(image)
 
   return (
     <Fade bottom>

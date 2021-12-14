@@ -9,7 +9,6 @@ export default async (_req, res) => {
 
     // Get all products
     const products = await Product.find({})
-      .populate('brand')
       .populate('category');
 
     return res.json({ products });

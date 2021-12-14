@@ -49,7 +49,7 @@ function ProductFeed({ products, categories }) {
       </div>
       <div className="grid grid-flow-row-dense sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 grid-cols-1 mx-auto max-w-screen-xl gap-x-6 gap-y-8">
         {(categoryActive === "all" ? products : filteredProducts)?.map(
-          ({ _id, title, price, description, category, image }) => (
+          ({ _id, title, price, description, category, images }) => (
             <Product
               key={`product-${_id}`}
               _id={_id}
@@ -57,7 +57,7 @@ function ProductFeed({ products, categories }) {
               price={price}
               description={description}
               category={category}
-              image={image}
+              image={images[0]?.secure_url}
             />
           )
         )}

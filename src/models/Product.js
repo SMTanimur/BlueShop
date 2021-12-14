@@ -17,7 +17,7 @@ const productSchema = new mongoose.Schema(
       required: true,
       default: {
         secure_url:
-          'https://res.cloudinary.com/muttakinhasib/image/upload/v1618421868/products/woocommerce-placeholder-600x600_rnyd9c.png',
+          'https://res.cloudinary.com/dk6bdrkbv/image/upload/v1639407555/BlueShop/products/reogwhlq9ppdlyksgxyj.png',
       },
     },
     description: {

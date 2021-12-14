@@ -5,7 +5,7 @@ import Product from 'src/models/Product';
 
 
 const handler = async (req, res) => {
-  const {...others } = req.body;
+  const {...others} = req.body;
 
   try {
     // Connect MongoDB
@@ -13,7 +13,7 @@ const handler = async (req, res) => {
 
     const product = new Product({
       user: req.user._id,
-      ...others,
+      ...others
     });
 
     // Save product into database

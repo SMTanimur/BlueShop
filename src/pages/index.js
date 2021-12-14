@@ -4,10 +4,8 @@ import { useQuery } from 'react-query';
 import { getAllProducts, getCategories } from 'src/utils/api';
 
 export default function Home(props) {
-  const { data: products, isLoading } = useQuery('products', getAllProducts, {
-    initialData: props.products,
-  });
-
+  const { data: products, isLoading } = useQuery('products', getAllProducts);
+   console.log(products)
 
   const { data: categories } = useQuery(
     'categories',

@@ -44,10 +44,10 @@ const FileUploader = ({ title, folderName, setPictures, defaultImages }) => {
         const { data } = await axios.post(URL, formData, config);
         setLoading(false);
 
-        const { public_id, height, weight, secure_url, url } = data;
+        const { public_id, secure_url, url } = data;
         setUploadedFile(prev => [
           ...prev,
-          { public_id, height, weight, secure_url, url },
+          { public_id,secure_url, url },
         ]);
       } catch (err) {
         setLoading(false);

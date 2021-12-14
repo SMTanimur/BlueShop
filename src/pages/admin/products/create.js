@@ -1,31 +1,74 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Head from "next/head";
 import { useDispatch } from "react-redux";
 import { attemptCreateProduct } from "src/features/product/productActions";
 import { useQuery } from "react-query";
-import { getCategories } from "src/utils/api";
+import { createCategory, getCategories } from "src/utils/api";
 import { withAdminRoute } from "src/hoc/withAdminRoute";
 import { useForm } from "react-hook-form";
 import FileUploader from "@components/Shared/FileUploader";
+import CreatableSelect from 'react-select/creatable';
+
+const customStyles = {
+  control: (
+    { borderColor, backgroundColor, boxShadow, ...provided },
+    { theme }
+  ) => ({
+    ...provided,
+    width: '100%',
+    backgroundColor: 'rgba(243, 244, 246, 1)',
+    borderColor: theme.colors.neutral0,
+    '&:hover': {
+      borderColor: theme.colors.neutral70,
+    },
+  }),
+  valueContainer: style => ({
+    ...style,
+    padding: '6px 16px',
+  }),
+  placeholder: style => ({
+    ...style,
+    color: 'rgba(156, 163, 175, 1)',
+    fontSize: '14px',
+  }),
+  input: style => ({
+    ...style,
+    outline: 'none',
+    border: 'none',
+  }),
+};
+
 
 function AddProduct() {
 
+  
+
   const { data: categories, isLoading } = useQuery('categories', getCategories)
+
+  const [category, setCategory] = useState();
+  console.log(category)
+
+  
+
   
     const{register,handleSubmit}=useForm()
   const [disabled, setDisabled] = useState(false);
   const [images, setPictures] = useState([]);
   const dispatch = useDispatch();
 
- 
+
 
   // Handle Submit
   const onFormSubmit = data => {
-    dispatch(attemptCreateProduct(data,{images}));
+    dispatch(attemptCreateProduct(data,{
+      images,
+      category
+    }));
   };
 
-
   
+
+
 
   
   return (
@@ -38,7 +81,7 @@ function AddProduct() {
           <h2 className="lg:text-4xl sm:text-3xl text-2xl  font-bold mb-6">
             Add Product
           </h2>
-          <form onSubmit={onFormSubmit} className="flex flex-col gap-4">
+          <form onSubmit={handleSubmit(onFormSubmit)} className="flex flex-col gap-4">
             <input
               type="text"
               required
@@ -49,10 +92,10 @@ function AddProduct() {
               {...register('title', { required: true })}
               disabled={disabled}
             />
-            <select
+           <select
               required
               className="bg-gray-100 py-2 px-4 rounded-md outline-none border border-gray-200 capitalize"
-              {...register('category', { required: true })}
+              onChange={(e) => setCategory(e.target.value)}
               disabled={disabled}
             >
               {categories?.map((category) => (
