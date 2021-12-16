@@ -3,8 +3,9 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { useQuery } from 'react-query';import { withAdminRoute } from 'src/hoc/withAdminRoute';
-;
+import Head from 'next/head';
 import { getAllProducts } from 'src/utils/api';
+import ProductInfo from '@components/Product/ProductInfo';
 
 function Products(props) {
   const [searchTerm, setSearchTerm] = useState("");
@@ -14,10 +15,7 @@ function Products(props) {
     keys: ["title", "description", "category"],
   };
 
-  if (error) {
-    console.error(error);
-  }
-
+  
   const searchProduct = async (e) => {
     let term = e.target.value;
     setSearchTerm(term);
@@ -65,14 +63,14 @@ function Products(props) {
           </div>
           <div className="overflow-y-auto hideScrollBar h-96 p-1">
             {(searchTerm ? searchResult : products)?.map(
-              ({ _id, title, price, description, category, image }, i) => (
+              ({ _id, title, price, description, category, images }, i) => (
                 <ProductInfo
                   _id={_id}
                   title={title}
                   price={price}
                   description={description}
                   category={category}
-                  image={image}
+                  image={images}
                   border={i + 1 !== products?.length}
                   key={`product-${_id}`}
                   removeFromSearchResults={removeFromSearchResults}

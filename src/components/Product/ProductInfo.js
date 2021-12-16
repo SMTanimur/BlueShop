@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { attemptDeleteProduct } from "src/features/product/productActions";
 import NormalToast from "src/utils";
+import { removeImage } from "src/utils/api";
 
 function ProductInfo({
   _id,
@@ -17,6 +18,8 @@ function ProductInfo({
   border,
   removeFromSearchResults,
 }) {
+
+  console.log(image)
 
   const dispatch = useDispatch()
   const router = useRouter();
@@ -52,7 +55,7 @@ function ProductInfo({
           <button
             className={`button py-2 xxs:px-10 px-8 ${disabled ? "opacity-50" : ""
               }`}
-            onClick={() => router.push(`/admin/product/update/${_id}`)}
+            onClick={() => router.push(`/admin/products/update/${_id}`)}
             disabled={disabled}
           >
             Update
@@ -69,7 +72,7 @@ function ProductInfo({
       </div>
       <div className="sm:mx-0 sm:ml-6 min-w-max  mx-auto my-auto">
         <Image
-          src={image}
+          src={image[0]?.secure_url}
           width={120}
           height={120}
           alt=""
